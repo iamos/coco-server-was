@@ -1,7 +1,19 @@
+body {
+	background-image: url("../img/background.png");
+}
+
 .main_form {
 	width : 20%;
 	margin: auto;
 	padding-top:20%;
+}
+
+.main_form p label {
+	display: none;
+}
+
+.main_form p {
+	margin:0;
 }
 
 #id_email {
@@ -41,7 +53,7 @@
 	margin-top:10px;
 	border-color: #529ECC;
 	background: #529ECC none repeat scroll 0% 0%;
-	border-style: solid; 
+	border-style: none; 
 	color:white;
 	font-size:15pt;
 	border-radius: 4px;
@@ -50,4 +62,24 @@
 .right {
 	float: right;
 	margin:10px;
+}
+
+.login_button {
+	border-color: rgba(255, 255, 255, 0.3) !important;
+	background: rgba(255, 255, 255, 0.3) none repeat scroll 0% 0% !important;
+	border-style: none !important; 
+	color:white !important;
+}
+
+.signup_button {
+	border-style: none !important; 
+}
+
+.alarm_message {
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-top:10px;
+	text-align: center;
+	color:white;
+	background-color:rgba(0, 0, 0, 0.33);
 }
