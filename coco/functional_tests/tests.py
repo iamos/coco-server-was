@@ -44,7 +44,7 @@ class NewVisitorTest(LiveServerTestCase):
             'password': 'testtest',
         }
 
-    def _test_start_from_signup_page(self):
+    def test_root_url_response_signup_page(self):
         self.browser.get(self.live_server_url)
         self.assertIn(u'가입하기 | 한양중고장터', self.browser.title)
         email_input = self.browser.find_element_by_id('id_email')
@@ -68,7 +68,7 @@ class NewVisitorTest(LiveServerTestCase):
             u'가입'
         )
 
-    def _test_invalid_user_signup_was_failed(self):
+    def test_invalid_user_signup_was_failed(self):
         self.browser.get(self.live_server_url)
         email_input = self.browser.find_element_by_id('id_email')
         password_input = self.browser.find_element_by_id('id_password')
@@ -99,7 +99,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertEquals(errors[1].text, u'사용자 이름에는 알파벳 대소문자, 숫자만 사용 가능합니다.')
         self.assertEquals(errors[2].text, u'비밀번호의 길이가 너무 짧습니다.')
 
-    def _test_duplicate_user_signup_was_failed(self):
+    def test_duplicate_user_signup_was_failed(self):
         self.browser.get(self.live_server_url)
         email_input = self.browser.find_element_by_id('id_email')
         password_input = self.browser.find_element_by_id('id_password')
@@ -116,7 +116,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertEquals(errors[0].text, u'이미 등록된 이메일입니다.')
         self.assertEquals(errors[1].text, u'이미 존재하는 사용자 이름입니다.')
 
-    def _test_valid_user_signup(self):
+    def test_valid_user_signup(self):
         self.browser.get(self.live_server_url)
         email_input = self.browser.find_element_by_id('id_email')
         password_input = self.browser.find_element_by_id('id_password')
@@ -129,9 +129,10 @@ class NewVisitorTest(LiveServerTestCase):
         username_input.send_keys(user['username'])
         signup_button.click()
 
-        # TODO: how to wait redirect ?
+        login_url = self.browser.current_url
+        self.assertTrue(login_url.endswith('/login/'))
 
-    def _test_can_login_and_redirect_dashboard(self):
+    def test_can_login_and_redirect_dashboard(self):
         self.browser.get(self.live_server_url + "/login")
         self.assertIn(u'로그인 | 한양중고장터', self.browser.title)
 
@@ -142,13 +143,20 @@ class NewVisitorTest(LiveServerTestCase):
         password_input.send_keys(user['password'])
         login_button = self.browser.find_element_by_id('login_forms_submit')
         login_button.click()
-        self.browser.implicitly_wait(3)
         dashboard_url = self.browser.current_url
         self.assertTrue(dashboard_url.endswith('/dashboard'))
 
-    def test_000_accounts_page(self):
-        self._test_start_from_signup_page()
-        self._test_invalid_user_signup_was_failed()
-        self._test_duplicate_user_signup_was_failed()
-        self._test_valid_user_signup()
-        self._test_can_login_and_redirect_dashboard()
+    def test_dashboard_can_write_post(self):
+        self.assertTrue(False)
+
+    def test_dashboard_can_read_post(self):
+        self.assertTrue(False)
+
+    def test_dashboard_can_write_comment(self):
+        self.assertTrue(False)
+
+    def test_dashboard_can_read_comment(self):
+        self.assertTrue(False)
+
+    def test_dashboard_can_logout(self):
+        self.assertTrue(False)
