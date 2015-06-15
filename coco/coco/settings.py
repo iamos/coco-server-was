@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'users',
     # 'dashboard',
+    'posts',
 )
 
 MIDDLEWARE_CLASSES = (
