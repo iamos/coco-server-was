@@ -7,14 +7,19 @@
 {% endblock %}
 
 {% block content %}
+<div class="main_form">
+	<form action="{% url 'sign_up' %}" method="post">
 
-<form action="{% url 'sign_up' %}" method="post">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button id="signup_forms_submit">
-	<span>가입</span>
-    </button>
-</form>
-
+	    {% csrf_token %}
+	    <!-- {{ form.as_p }} -->
+	    
+	    <input id="id_email" class="form-control" type="email" placeholder="이메일" name="email"></input>
+	    <input id="id_username" class="form-control" type="text" placeholder="사용자 이름" name="username" maxlength="30"></input>
+	    <input id="id_password" class="form-control" type="password" placeholder="비밀번호" name="password"</input>
+		
+	    <button id="signup_forms_submit" class="forms_submit_button">
+		<span>가입</span>
+	    </button>
+	</form>
+</div>
 {% endblock %}

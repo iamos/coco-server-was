@@ -7,14 +7,15 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="main_form">
 <form action="{% url 'login' %}" method="post">
-
     {% csrf_token %}
-    {{ form.as_p }}
-    <button id="login_forms_submit">
+    <!-- {{ form.as_p }} -->
+    <input id="id_email" class="form-control" type="email" placeholder="이메일" name="email"></input>
+    <input id="id_password" class="form-control" type="password" placeholder="비밀번호" name="password"</input>
+    <button id="login_forms_submit" class="forms_submit_button">
 	<span>로그인</span>
     </button>
 </form>
-
+</div>
 {% endblock %}
