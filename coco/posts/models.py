@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from django.db import models
 from users.models import User
 
@@ -21,7 +22,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=50, blank=False)
     description = models.TextField(blank=False)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, related_name='tags', related_query_name='tag')
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)

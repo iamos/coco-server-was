@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'js/imageloaded.pkgd.min.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+{% include 'dashboard/dashboard_header.html' %}
+{% endblock %}

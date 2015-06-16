@@ -9,6 +9,6 @@ urlpatterns = [
     url(r'^signup/$', 'users.views.sign_up', name='sign_up'),
     url(r'^login/$', 'users.views.login', name='login'),
     url(r'^logout/$', 'users.views.logout'),
-    url(r'^dashboard/', 'dashboard.views.index'),
+    url(r'^dashboard/', include('dashboard.urls')),
     url(r'^posts/', include('posts.urls')),
 ] + static('static_files', document_root=settings.MEDIA_ROOT)
