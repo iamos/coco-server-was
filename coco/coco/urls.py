@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
@@ -9,4 +11,4 @@ urlpatterns = [
     url(r'^logout/$', 'users.views.logout'),
     url(r'^dashboard/', 'dashboard.views.index'),
     url(r'^posts/', include('posts.urls')),
-]
+] + static('static_files', document_root=settings.MEDIA_ROOT)

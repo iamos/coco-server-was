@@ -13,4 +13,3 @@ def post(request):
 	# write about make post
 	
 	return HttpResponse("hello post")
-
