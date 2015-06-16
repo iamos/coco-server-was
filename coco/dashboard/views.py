@@ -11,5 +11,8 @@ def index(request):
 
 @login_required
 def tagged_posts(request, tag_name=""):
-    context = {'posts': Post.objects.filter(tags__name=tag_name)}
+    context = {
+        'tag': tag_name,
+        'posts': Post.objects.filter(tags__name=tag_name)
+    }
     return render(request, 'dashboard/search_result.html', context)
