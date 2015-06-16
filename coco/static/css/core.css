@@ -1,85 +1,86 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* force scrollbar */
+html { overflow-y: scroll; }
+
 body {
-	background-image: url("../img/background.png");
+    font-family: sans-serif;
 }
 
-.main_form {
-	width : 20%;
-	margin: auto;
-	padding-top:20%;
+.hotdeal-holder {
+    margin-bottom:20px;
 }
 
-.main_form p label {
-	display: none;
+/* ---- isotope ---- */
+
+.grid {
 }
 
-.main_form p {
-	margin:0;
+/* clear fix */
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
 }
 
-#id_email {
-	margin: 0px;
-	padding: 0px;
-	border-bottom:0px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-	height: 45px;
-	text-indent:3.8%;
+/* ---- .grid-item ---- */
+
+.grid-item {
+    width: 275px;
+    margin-bottom:10px;
+    float: left;
 }
 
-#id_username {
-	margin: 0px;
-	padding: 0px;
-	border-top:0px;
-	border-bottom:0px;
-	border-radius: 0px;
-	border-radius: 0px;
-	height: 45px;
-	text-indent:3.8%;
-}
-
-#id_password {
-	margin: 0px;
-	padding: 0px;
-	border-top:0px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	height: 45px;
-	text-indent:3.8%;
+.grid-item img {
+    display: block;
+    max-width: 100%;
 }
 
 .forms_submit_button {
-	width : 100%;
-	height: 45px;
-	margin-top:10px;
-	border-color: #529ECC;
-	background: #529ECC none repeat scroll 0% 0%;
-	border-style: none; 
-	color:white;
-	font-size:15pt;
-	border-radius: 4px;
+    width : 100%;
+    height: 45px;
+    margin-top:10px;
+    border-color: #529ECC;
+    background: #529ECC none repeat scroll 0% 0%;
+    border-style: none; 
+    color:white;
+    font-size:15pt;
+    border-radius: 4px;
 }
 
 .right {
-	float: right;
-	margin:10px;
+    float: right;
+    margin:10px;
 }
 
-.login_button {
-	border-color: rgba(255, 255, 255, 0.3) !important;
-	background: rgba(255, 255, 255, 0.3) none repeat scroll 0% 0% !important;
-	border-style: none !important; 
-	color:white !important;
+.alarm_message, .toast {
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-top:10px;
+    text-align: center;
+    color:white;
+    background-color:rgba(0, 0, 0, 0.33);
 }
 
-.signup_button {
-	border-style: none !important; 
+.toast {
+    width : 20%;
+    margin: auto;
+    margin-top:20px;
 }
 
-.alarm_message {
-	padding-top:10px;
-	padding-bottom:10px;
-	margin-top:10px;
-	text-align: center;
-	color:white;
-	background-color:rgba(0, 0, 0, 0.33);
+.container {
+}
+
+.tags ul {
+    margin:0;
+    list-style-type:none;
+    -webkit-padding-start: 0px;
+}
+
+.tags .tag {
+    display:inline;
 }

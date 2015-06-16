@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block extra_links %}
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
+{% block header %}
+{% include 'users/account_header.html' %}
+{% endblock %}

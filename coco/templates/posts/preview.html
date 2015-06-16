@@ -1,0 +1,21 @@
+<div class="grid-item">
+    <div class="thumbnail">
+	<img src="/static/{{ post.photos.all.0.image_file }}" alt="">
+	<div class="caption">
+	    <h4><a href="#">{{ post.title }}</a></h4>
+	    <p>경매 종료까지 {{ post.auction.expire_date | timeuntil }} </p>
+	    <p >즉시구매가 {{ post.auction.immediate_price }}원</p>
+	    <p>현재경매가 {{ post.auction.current_price }}원</p>
+
+	    <p>{{ post.description }}</p>
+	    <div class="tags">
+		<ul>
+		    {% for tag in post.tags.all %}
+		    <!-- dummy url for tag search-->
+		    <li class="tag"><a href="/dashboard/tags/{{ tag }}">#{{ tag }}</a></li>
+                    {% endfor %}
+		</ul>
+	    </div>
+	</div>
+    </div>
+</div>

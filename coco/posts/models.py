@@ -1,78 +1,88 @@
 # -*- coding: utf-8 -*-
+
 from django.db import models
-# from users.models import User
+from users.models import User
+from django.utils import timezone
+
+def default_expire_date():
+    return timezone.now() + timezone.timedelta(days=7)
+
+class Auction(models.Model):
+
+    product_condition = models.CharField(max_length=100, blank=True)
+    original_price = models.PositiveSmallIntegerField(default=0, blank=False)
+    immediate_price = models.PositiveSmallIntegerField(default=0, blank=False)
+    starting_price = models.PositiveSmallIntegerField(default=0, blank=False)
+    # TODO: how do i save value from starting_price?
+    current_price = models.PositiveSmallIntegerField(default=0, blank=False)
+    transaction_place = models.CharField(max_length=100, null=False)
+    expire_date = models.DateTimeField(default=default_expire_date)
+
+    def remain_time(self):
+        self.expire_date
+
+class Deal(models.Model):
+
+    auction = models.ForeignKey(Auction, related_name='deals', related_query_name='deal')
+    dealer = models.OneToOneField(User, related_name='dealer', related_query_name='delaer')
+    buyer = models.OneToOneField(User, related_name='buyer', related_query_name='buyer')
+    bidding = models.PositiveSmallIntegerField(default=0, blank=False)
+
+    def __unicode__(self):
+        return self.auction
+
+
+class Tag(models.Model):
+
+    class Meta:
+        ordering = ['name']
+
+    name = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.name
+
 
 class Post(models.Model):
+
     class Meta:
-        verbose_name = u'게시글'
+        ordering = ['created_at']
 
     title = models.CharField(max_length=50, blank=False)
-    # user_id = models.ForeignKey(User)
-    content = models.TextField(null=True,blank=True)
-    created_date = models.DateTimeField(auto_now_add=True)
-    update_date = models.DateTimeField(auto_now=True)
-    hits = models.IntegerField(null=True, blank=True)
+    description = models.TextField(blank=False)
+    tags = models.ManyToManyField(Tag, related_name='tags', related_query_name='tag')
     is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User)
+    comment_count = models.PositiveSmallIntegerField(default=0, null=True)
+    auction = models.OneToOneField(Auction)
 
-    def create_post(self, title, user_id): 
-    	new_post = Post(title=title, user_id=user_id)
+    def __unicode__(self):
+        return self.title
 
-    	return new_post
-
-    def set_content_post(self, post, content):
-    	post.content = content
-
-    	return post
-
-    class Admin:
-    	pass
 
 class Photo(models.Model):
-	class Meta:
-		verbose_name = u'제품사진'
-	post_id = models.ForeignKey(Post)
-	filename = models.CharField(max_length=50, blank=True)
-	imagedata = models.ImageField(upload_to=None, max_length=100)
 
-	def create_photo(self, filename):
-		new_Photo = Photo(filename = filename)
+    post = models.ForeignKey(Post, related_name='photos', related_query_name='photo')
+    image_file= models.ImageField(upload_to='uploaded')
 
-		return new_Photo
+    def delete(self, *args, **kwargs):
+        self.image_file.delete()
+        super(Post, self).delete(*args, **kwargs)
 
-	def set_image(self, photo, image):
-		photo.imagedata = image
+    def __unicode__(self):
+        return "%s" % (self.id)
 
-		return photo
-
-	class Admin:
-		pass
-
-class HashTag(models.Model):
-	class Meta:
-		verbose_name = u'해시태그'
-	post_id = models.ForeignKey(Post)
-	content = models.CharField(max_length=20, blank=True)
-
-	def create_hashtag(self, post_id, content):
-		new_hashtag = HashTag(post_id=post_id, content=content)
-
-		return new_hashtag
-
-	class Admin:
-		pass
 
 class Comment(models.Model):
-	class Meta:
-		verbose_name = u'댓글'
-	post_id = models.ForeignKey(Post)
-	# user_id = models.ForeignKey(User)
-	content = models.CharField(max_length=100, blank=False)
-	created_date = models.DateTimeField(auto_now_add=True)
 
+    post = models.ForeignKey(Post, related_name='comments', related_query_name='comment')
+    content = models.CharField(max_length=100, blank=False)
+    created_date = models.DateTimeField(auto_now_add=True)
 
-	def create_comment(self, post_id, user_id, content):
-		new_comment = Comment(post_id=post_id, user_id=user_id, content=content)
-		return new_comment
+    def create_comment(self, post_id, user_id, content):
+        new_comment = Comment(post_id=post_id, user_id=user_id, content=content)
+        return new_comment
 
-	class Admin:
-		pass
+    def __unicode__(self):
+        return self.content
