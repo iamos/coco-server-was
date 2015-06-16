@@ -10,32 +10,15 @@
 
 	<!-- css -->
 	<link rel="stylesheet" href="{% static 'css/core.css' %}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 	{% block extra_links %}{% endblock %}
 
 	<!-- jquery -->
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
-	<!-- <script type="text/javascript">
-	    function toast(sMessage) {
-	    console.log(sMessage)
-	      var container = $(document.createElement("div"));
-	      container.addClass("toast");
 
-	      var message = $(document.createElement("div"));
-	      message.addClass("message");
-	      message.text(sMessage);
-	      message.appendTo(container);
-
-	      container.appendTo(document.body);
-
-	      container.delay(100).fadeIn("slow", function() {
-	        $(this).delay(2000).fadeOut("slow", function() {
-  	          $(this).remove();
-	        });
-	      });
-	    }
-	</script> -->
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/toast.js' %}"></script>
 	{% block extra_scripts %}{% endblock %}
     </head>
     <body class="{% block body_class %}{% endblock %}">
@@ -48,12 +31,6 @@
 		{% if messages %}
 		<ul class="notifications">
 		    {% for message in messages %}
-		    <!-- <script type="text/javascript">
-			$(document).ready(function(){toast("{{ message }}");});
-		    </script> -->
-		    <!-- <script type="text/javascript">
-			console.log("HI")
-		    </script> -->
 		    {% endfor %}
 		</ul>
 		{% endif %}

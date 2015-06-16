@@ -1,23 +1,34 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 
 {% block title %}로그인{% endblock %}
 
-{% block header %}
-  {% include 'users/account_header.html' %}
-{% endblock %}
-
 {% block content %}
+<div class="main_form">
+	<form action="{% url 'login' %}" method="post">
+		{% csrf_token %}
+		{% for field in form %}
+			<div class="field-wrapper">
+				{{ field }}
+			</div>
+		{% endfor %}
+		{% if form.errors %}
+			<div class="alarm_message">
+			{% for field in form %}
+				{% for error in field.errors %}
+					{{ error|escape }}
+					<br />
+				{% endfor %}
+			{% endfor %}
 
-<form action="{% url 'login' %}" method="post" >
-
-    {% csrf_token %}
-    {{ form.as_p }}
-    <!-- <input id="id_email" type="email" name="email" placeholder="email">
-    <input type="text" name="username" placeholder="사용자 이름">
- 	-->
-    <button id="login_forms_submit" class="btn btn-default">
-	<span>로그인</span>
-    </button>
-</form>
-
+			{% for error in form.non_field_errors %}
+				{{ error|escape }}
+				<br />
+			{% endfor %}
+			</div>
+		{% endif %}
+		<button id="login_forms_submit" class="forms_submit_button">
+			<span>로그인</span>
+		</button>
+	</form>
+</div>
 {% endblock %}
