@@ -10,12 +10,13 @@
 
 	<!-- css -->
 	<link rel="stylesheet" href="{% static 'css/core.css' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	{% block extra_links %}{% endblock %}
 
 	<!-- jquery -->
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	    function toast(sMessage) {
 	    console.log(sMessage)
 	      var container = $(document.createElement("div"));
@@ -34,7 +35,7 @@
 	        });
 	      });
 	    }
-	</script>
+	</script> -->
 	{% block extra_scripts %}{% endblock %}
     </head>
     <body class="{% block body_class %}{% endblock %}">
@@ -47,12 +48,12 @@
 		{% if messages %}
 		<ul class="notifications">
 		    {% for message in messages %}
-		    <script type="text/javascript">
+		    <!-- <script type="text/javascript">
 			$(document).ready(function(){toast("{{ message }}");});
-		    </script>
-		    <script type="text/javascript">
+		    </script> -->
+		    <!-- <script type="text/javascript">
 			console.log("HI")
-		    </script>
+		    </script> -->
 		    {% endfor %}
 		</ul>
 		{% endif %}

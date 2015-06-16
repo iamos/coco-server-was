@@ -8,11 +8,14 @@
 
 {% block content %}
 
-<form action="{% url 'login' %}" method="post">
+<form action="{% url 'login' %}" method="post" >
 
     {% csrf_token %}
     {{ form.as_p }}
-    <button id="login_forms_submit">
+    <!-- <input id="id_email" type="email" name="email" placeholder="email">
+    <input type="text" name="username" placeholder="사용자 이름">
+ 	-->
+    <button id="login_forms_submit" class="btn btn-default">
 	<span>로그인</span>
     </button>
 </form>

@@ -7,14 +7,17 @@ import re
 
 class SignUpForm(forms.Form):
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'placeholder': u'이메일'})
+        widget=forms.EmailInput(attrs={'class':'form-control','placeholder': u'이메일'}),
+        label=''
     )
     username = forms.CharField(
         max_length=30,
-        widget=forms.TextInput(attrs={'placeholder': u'사용자 이름'})
+        widget=forms.TextInput(attrs={'class':'form-control','placeholder': u'사용자 이름'}),
+        label=''
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': u'비밀번호'})
+        widget=forms.PasswordInput(attrs={'class':'form-control','placeholder': u'비밀번호'}),
+        label=''
     )
 
     def __init__(self, *args, **kwargs):
@@ -66,10 +69,12 @@ class SignUpForm(forms.Form):
 class LoginForm(forms.Form):
 
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'placeholder': u'이메일'})
+        widget=forms.EmailInput(attrs={'class':'form-control','placeholder': u'이메일'}),
+        label=''
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': u'비밀번호'})
+        widget=forms.PasswordInput(attrs={'class':'form-control','placeholder': u'비밀번호'}),
+        label=''
     )
 
     def __init__(self, *args, **kwargs):
