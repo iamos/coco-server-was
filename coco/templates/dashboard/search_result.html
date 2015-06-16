@@ -1,12 +1,14 @@
 {% extends 'dashboard/base.html' %}
+{% block title %}#{{ tag }}{% endblock %}
 
 {% block content %}
-<!-- Post list -->
-<div class="grid">
-    <div class="grid-sizer"></div>
-    {% for post in posts %}
-    {% include 'posts/preview.html' with post=post %}
-    {% endfor %}
-    {{ tag }}
+<div class="container">
+    <!-- Post list -->
+    <div class="grid">
+	<div class="grid-sizer"></div>
+	{% for post in posts %}
+	{% include 'posts/preview.html' with post=post %}
+	{% endfor %}
+    </div>
 </div>
 {% endblock %}
