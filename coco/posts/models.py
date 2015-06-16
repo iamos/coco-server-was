@@ -2,6 +2,34 @@
 
 from django.db import models
 from users.models import User
+from django.utils import timezone
+
+def default_expire_date():
+    return timezone.now() + timezone.timedelta(days=7)
+
+class Auction(models.Model):
+
+    product_condition = models.CharField(max_length=100, blank=True)
+    original_price = models.PositiveSmallIntegerField(default=0, blank=False)
+    immediate_price = models.PositiveSmallIntegerField(default=0, blank=False)
+    starting_price = models.PositiveSmallIntegerField(default=0, blank=False)
+    # TODO: how do i save value from starting_price?
+    current_price = models.PositiveSmallIntegerField(default=0, blank=False)
+    transaction_place = models.CharField(max_length=100, null=False)
+    expire_date = models.DateTimeField(default=default_expire_date)
+
+    def remain_time(self):
+        self.expire_date
+
+class Deal(models.Model):
+
+    auction = models.ForeignKey(Auction, related_name='deals', related_query_name='deal')
+    dealer = models.OneToOneField(User, related_name='dealer', related_query_name='delaer')
+    buyer = models.OneToOneField(User, related_name='buyer', related_query_name='buyer')
+    bidding = models.PositiveSmallIntegerField(default=0, blank=False)
+
+    def __unicode__(self):
+        return self.auction
 
 
 class Tag(models.Model):
@@ -26,7 +54,8 @@ class Post(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)
-    comments = models.PositiveSmallIntegerField(default=0, null=True)
+    comment_count = models.PositiveSmallIntegerField(default=0, null=True)
+    auction = models.OneToOneField(Auction)
 
     def __unicode__(self):
         return self.title
@@ -34,7 +63,7 @@ class Post(models.Model):
 
 class Photo(models.Model):
 
-    post = models.ForeignKey(Post, related_name='photos', related_query_name="photo")
+    post = models.ForeignKey(Post, related_name='photos', related_query_name='photo')
     image_file= models.ImageField(upload_to='uploaded')
 
     def delete(self, *args, **kwargs):
@@ -44,9 +73,10 @@ class Photo(models.Model):
     def __unicode__(self):
         return "%s" % (self.id)
 
+
 class Comment(models.Model):
 
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey(Post, related_name='comments', related_query_name='comment')
     content = models.CharField(max_length=100, blank=False)
     created_date = models.DateTimeField(auto_now_add=True)
 

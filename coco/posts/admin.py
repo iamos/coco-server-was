@@ -1,8 +1,12 @@
 from django.contrib import admin
-from posts.models import Post
-from posts.models import Photo
-from posts.models import Tag
-from posts.models import Comment
+from posts.models import (
+    Post,
+    Tag,
+    Photo,
+    Comment,
+    Auction,
+    Deal
+)
 
 class PostAdmin(admin.ModelAdmin):
     
@@ -23,3 +27,5 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Comment)
 admin.site.register(Photo)
+admin.site.register(Auction)
+admin.site.register(Deal)
