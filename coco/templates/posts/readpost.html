@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="readpost.css">
+</head>
+<body>
+	<div id="detail_page" class="container">
+		<div class="row">
+			<div id="detil_left_box" class="col-md-6">
+				<img id="product_img" class="img-rounded" src="KWJ_8536_.jpg" alt="product_picture">
+			</div>
+			<div id="detail_right_box" class="col-md-6">
+				<div id="desc_box" class="row">
+					<h1>{% title value %}</h1>
+					<h2>{% remain time %}</h2>
+					<h3>{% Price Value %}</h3>
+					<ul class="list-inline hash_tag">
+						<li>{% Tag1 %}</li>
+						<li>{% Tag1 %}</li>
+						<li>{% Tag1 %}</li>
+					</ul>
+					<p>{% Description %}</p>
+				</div>
+				<div id="comment_box" class="row">
+					<h3>Comments</h3>
+					<ul>
+						<li>{% id : contents , Date %}</li>
+						<li>{% id : contents , Date %}</li>
+						<li>{% id : contents , Date %}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
